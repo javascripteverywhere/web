@@ -1,0 +1,37 @@
+{
+  "name": "notedly-web",
+  "version": "1.0.0",
+  "description": "[WIP] Web code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "final": "parcel final/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javascripteverywhere/web.git"
+  },
+  "keywords": [],
+  "author": "Adam Scot <hello@adamdscott.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/javascripteverywhere/web/issues"
+  },
+  "homepage": "https://github.com/javascripteverywhere/web#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2"
+  }
+}
