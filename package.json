@@ -19,12 +19,15 @@
   },
   "homepage": "https://github.com/javascripteverywhere/web#readme",
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.0.1",
+    "styled-components": "^4.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-plugin-styled-components": "^1.10.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^5.16.0",
