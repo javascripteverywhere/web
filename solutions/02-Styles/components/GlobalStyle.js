@@ -29,4 +29,11 @@ export default createGlobalStyle`
   a:focus {
     color: #004499;
   }
+
+  code,
+  pre {
+    max-width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+  }
 `;
