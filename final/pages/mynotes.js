@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import Button from '../components/Button';
-
 const MyNotes = () => {
   useEffect(() => {
     // update the document title
@@ -11,7 +9,6 @@ const MyNotes = () => {
   return (
     <div>
       <p>These are my notes</p>
-      <Button>Click me!</Button>
     </div>
   );
 };
