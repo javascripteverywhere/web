@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 
-const MyNotes = props => {
+const Favorites = () => {
   useEffect(() => {
     // update the document title
-    document.title = 'My Notes — Notedly';
+    document.title = 'Favorites — Notedly';
   });
 
   return (
     <div>
-      <p>These are my notes</p>
+      <p>These are my Favorites</p>
     </div>
   );
 };
 
-export default MyNotes;
+export default Favorites;
