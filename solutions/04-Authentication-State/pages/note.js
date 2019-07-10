@@ -23,9 +23,9 @@ const GET_NOTE = gql`
   }
 `;
 
-const NotePage = ({ match }) => {
+const NotePage = props => {
   // store the id found in the url as a variable
-  const id = match.params.id;
+  const id = props.match.params.id;
   return (
     // make our query using the ID found in the URL
     <Query query={GET_NOTE} variables={{ id }}>
