@@ -3,6 +3,9 @@ import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
 import styled from 'styled-components';
 
+// import our logged in user UI components
+import NoteUser from './NoteUser';
+
 // Keep notes from extending wider than 800px
 const StyledNote = styled.article`
   max-width: 800px;
@@ -23,7 +26,7 @@ const MetaInfo = styled.div`
 `;
 
 // align 'Favorites' to the right on large screens
-const Favorites = styled.div`
+const UserActions = styled.div`
   margin-left: auto;
 `;
 
@@ -38,9 +41,9 @@ const Note = ({ note }) => {
           <em>by</em> {note.author.username} <br />
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
-        <Favorites>
-          <em>Favorites:</em> {note.favoriteCount}
-        </Favorites>
+        <UserActions>
+          <NoteUser note={note} /> <br />
+        </UserActions>
       </MetaData>
       <ReactMarkdown source={note.content} />
     </StyledNote>

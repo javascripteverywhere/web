@@ -20,12 +20,13 @@ const GET_NOTE = gql`
         avatar
       }
     }
+    isLoggedIn @client
   }
 `;
 
-const NotePage = ({ match }) => {
+const NotePage = props => {
   // store the id found in the url as a variable
-  const id = match.params.id;
+  const id = props.match.params.id;
   return (
     // make our query using the ID found in the URL
     <Query query={GET_NOTE} variables={{ id }}>
@@ -36,7 +37,7 @@ const NotePage = ({ match }) => {
         // if successful, pass the data to the note component
         return (
           <div>
-            <Note note={data.note} />
+            <Note note={data.note} isLoggedIn={data.isLoggedIn} />
           </div>
         );
       }}

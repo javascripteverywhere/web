@@ -27,7 +27,7 @@ const GET_NOTES = gql`
 
 const Home = () => {
   return (
-    <Query query={GET_NOTES}>
+    <Query query={GET_NOTES} fetchPolicy="network-only">
       {/* add the fetchMore argument */}
       {({ data, loading, error, fetchMore }) => {
         // if the data is loading, our app will display a loading message

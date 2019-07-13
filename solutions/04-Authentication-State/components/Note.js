@@ -22,8 +22,7 @@ const MetaInfo = styled.div`
   padding-right: 1em;
 `;
 
-// align 'Favorites' to the right on large screens
-const Favorites = styled.div`
+const UserActions = styled.div`
   margin-left: auto;
 `;
 
@@ -38,9 +37,9 @@ const Note = ({ note }) => {
           <em>by</em> {note.author.username} <br />
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
-        <Favorites>
+        <UserActions>
           <em>Favorites:</em> {note.favoriteCount}
-        </Favorites>
+        </UserActions>
       </MetaData>
       <ReactMarkdown source={note.content} />
     </StyledNote>
