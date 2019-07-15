@@ -2,9 +2,17 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
 import styled from 'styled-components';
+import { Query } from 'react-apollo';
+import { gql } from 'apollo-boost';
 
 // import our logged in user UI components
 import NoteUser from './NoteUser';
+
+const IS_LOGGED_IN = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 // Keep notes from extending wider than 800px
 const StyledNote = styled.article`
@@ -41,9 +49,23 @@ const Note = ({ note }) => {
           <em>by</em> {note.author.username} <br />
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
-        <UserActions>
-          <NoteUser note={note} /> <br />
-        </UserActions>
+        <Query query={IS_LOGGED_IN}>
+          {({ data }) => {
+            if (data.isLoggedIn) {
+              return (
+                <UserActions>
+                  <NoteUser note={note} />
+                </UserActions>
+              );
+            } else {
+              return (
+                <UserActions>
+                  <em>Favorites:</em> {note.favoriteCount}
+                </UserActions>
+              );
+            }
+          }}
+        </Query>
       </MetaData>
       <ReactMarkdown source={note.content} />
     </StyledNote>

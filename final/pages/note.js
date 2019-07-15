@@ -20,7 +20,6 @@ const GET_NOTE = gql`
         avatar
       }
     }
-    isLoggedIn @client
   }
 `;
 
@@ -37,7 +36,7 @@ const NotePage = props => {
         // if successful, pass the data to the note component
         return (
           <div>
-            <Note note={data.note} isLoggedIn={data.isLoggedIn} />
+            <Note note={data.note} />
           </div>
         );
       }}

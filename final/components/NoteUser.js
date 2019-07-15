@@ -23,30 +23,22 @@ const NoteUser = props => {
       {({ data, loading, error }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        if (data.me.id === props.note.author.id) {
-          return (
-            <React.Fragment>
-              <FavoriteNote
-                me={data.me}
-                noteId={props.note.id}
-                favoriteCount={props.note.favoriteCount}
-              />{' '}
-              <br />
-              <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
-              <DeleteNote noteId={props.note.id} />
-            </React.Fragment>
-          );
-        } else {
-          return (
-            <React.Fragment>
-              <FavoriteNote
-                me={data.me}
-                noteId={props.note.id}
-                favoriteCount={props.note.favoriteCount}
-              />
-            </React.Fragment>
-          );
-        }
+        return (
+          <React.Fragment>
+            <FavoriteNote
+              me={data.me}
+              noteId={props.note.id}
+              favoriteCount={props.note.favoriteCount}
+            />
+            <br />
+            {data.me.id === props.note.author.id && (
+              <React.Fragment>
+                <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
+                <DeleteNote noteId={props.note.id} />
+              </React.Fragment>
+            )}
+          </React.Fragment>
+        );
       }}
     </Query>
   );
