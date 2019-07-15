@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "final": "parcel final/index.html",
-    "deploy:src": "parcel build src/index.html",
-    "deploy:final": "parcel build final/index.html"
+    "deploy:src": "parcel build src/index.html --public-url ./",
+    "deploy:final": "parcel build final/index.html --public-url ./"
   },
   "repository": {
     "type": "git",
