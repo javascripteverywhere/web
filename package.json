@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-plugin-styled-components": "^1.10.1",
+    "babel-plugin-styled-components": "^1.10.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
