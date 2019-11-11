@@ -14,14 +14,14 @@ import Note from './Note';
 
 const NoteFeed = ({ notes }) => {
   return (
-    <section>
+    <div>
       {notes.map(note => (
         <NoteWrapper key={note.id}>
           <Note note={note} />
           <Link to={`note/${note.id}`}>Permalink</Link>
         </NoteWrapper>
       ))}
-    </section>
+    </div>
   );
 };
 

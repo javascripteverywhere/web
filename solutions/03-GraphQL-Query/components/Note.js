@@ -32,7 +32,11 @@ const Note = ({ note }) => {
     <StyledNote>
       <MetaData>
         <MetaInfo>
-          <img src={note.author.avatar} alt="user avatar" height="50px" />
+          <img
+            src={note.author.avatar}
+            alt={`${note.author.username} avatar`}
+            height="50px"
+          />
         </MetaInfo>
         <MetaInfo>
           <em>by</em> {note.author.username} <br />
