@@ -41,8 +41,8 @@ const UserForm = props => {
       {props.formType === 'signup' ? <h2>Sign Up</h2> : <h2>Sign In</h2>}
       {/* perform the mutation when a user submits the form */}
       <Form
-        onSubmit={e => {
-          e.preventDefault();
+        onSubmit={event => {
+          event.preventDefault();
           props.action({
             variables: {
               ...values
@@ -56,6 +56,7 @@ const UserForm = props => {
             <input
               required
               type="text"
+              id="username"
               name="username"
               placeholder="username"
               onChange={onChange}
@@ -66,6 +67,7 @@ const UserForm = props => {
         <input
           required
           type="email"
+          id="email"
           name="email"
           placeholder="Email"
           onChange={onChange}
@@ -74,6 +76,7 @@ const UserForm = props => {
         <input
           required
           type="password"
+          id="password"
           name="password"
           placeholder="Password"
           onChange={onChange}

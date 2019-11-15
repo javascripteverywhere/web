@@ -13,7 +13,7 @@ const SIGNIN_USER = gql`
 const SignIn = props => {
   useEffect(() => {
     // update the document title
-    document.title = 'Sign Up — Notedly';
+    document.title = 'Sign In — Notedly';
   });
 
   return (

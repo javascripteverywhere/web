@@ -67,7 +67,7 @@ const EditNote = props => {
             // if the mutation is successful, redirect to the note's page
             onCompleted={data => {
               if (data) {
-                props.history.push(`/note/${data.updateNote.id}`);
+                props.history.push(`/note/${id}`);
               }
             }}
           >

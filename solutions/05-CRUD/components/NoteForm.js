@@ -16,7 +16,7 @@ const TextArea = styled.textarea`
   height: 90%;
 `;
 
-const UserForm = props => {
+const NoteForm = props => {
   // set the default state of the form
   const [value, setValue] = useState({ content: props.content || '' });
 
@@ -54,4 +54,4 @@ const UserForm = props => {
   );
 };
 
-export default UserForm;
+export default NoteForm;
