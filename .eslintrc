@@ -20,8 +20,10 @@
     "node": true
   },
   "rules": {
-    "no-console": "off",
-    "no-unused-vars": "off"
+    "no-console": "off", // We use console.log for demonstrative purposes
+    "no-unused-vars": "off", // At times we have unused variables across chapters/sections
+    "react-hooks/rules-of-hooks": "error", // Checks rules of React Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks Hooks effect dependencies
   },
   "settings": {
     "react": {

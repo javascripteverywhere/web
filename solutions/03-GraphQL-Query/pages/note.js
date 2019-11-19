@@ -1,6 +1,6 @@
 import React from 'react';
 // import our GraphQL dependencies
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // import the Note component
@@ -26,22 +26,17 @@ const GET_NOTE = gql`
 const NotePage = props => {
   // store the id found in the url as a variable
   const id = props.match.params.id;
-  return (
-    // make our query using the ID found in the URL
-    <Query query={GET_NOTE} variables={{ id }}>
-      {({ data, loading, error }) => {
-        if (loading) return 'Loading...';
-        // if there's an error, display this message to the user
-        if (error) return <p>Error! Note not found</p>;
-        // if successful, pass the data to the note component
-        return (
-          <div>
-            <Note note={data.note} />
-          </div>
-        );
-      }}
-    </Query>
-  );
+
+  // query hook, passing the id value as a variable
+  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>;
+  // if there is an error fetching the data, display an error message
+  if (error) return <p>Error! Note not found</p>;
+
+  // if the data is successful, display the data in our UI
+  return <Note note={data.note} />;
 };
 
 export default NotePage;

@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 
+// import Apollo Client libraries
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+
+// global styles
 import GlobalStyle from '/components/GlobalStyle';
+// import our routes
+import Pages from '/pages';
 
 const uri = process.env.API_URI;
+
 // configure Apollo Client
 const client = new ApolloClient({
   uri,
@@ -14,16 +20,11 @@ const client = new ApolloClient({
   }
 });
 
-// import our routes
-import Pages from '/pages';
-
-const App = () => {
-  return (
-    <ApolloProvider client={client}>
-      <GlobalStyle />
-      <Pages />
-    </ApolloProvider>
-  );
-};
+const App = () => (
+  <ApolloProvider client={client}>
+    <GlobalStyle />
+    <Pages />
+  </ApolloProvider>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
