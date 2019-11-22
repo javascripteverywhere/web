@@ -17,7 +17,7 @@ const SignUp = props => {
   });
 
   const client = useApolloClient();
-  const [data, { loading, error }] = useMutation(SIGNUP_USER, {
+  const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
     onCompleted: data => {
       // store the token
       localStorage.setItem('token', data.signUp);
@@ -30,7 +30,7 @@ const SignUp = props => {
 
   return (
     <React.Fragment>
-      <UserForm action={data} formType="signup" />
+      <UserForm action={signUp} formType="signup" />
       {/* if the data is loading, display a loading message*/}
       {loading && <p>Loading...</p>}
       {/* if there is an error, display a error message*/}
