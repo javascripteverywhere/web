@@ -1,6 +1,5 @@
 import React from 'react';
-// import our GraphQL dependencies
-import { Query, Mutation } from 'react-apollo';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // import the NoteForm component
@@ -48,42 +47,31 @@ const EDIT_NOTE = gql`
 const EditNote = props => {
   // store the id found in the url as a variable
   const id = props.match.params.id;
-  return (
-    // make our query using the ID found in the URL
-    <Query query={GET_NOTE} variables={{ id }}>
-      {({ data, loading, error }) => {
-        if (loading) return 'Loading...';
-        // if there's an error, display this message to the user
-        if (error) return <p>Error! Note not found</p>;
-        // if the current user and the author of the note do not match
-        if (data.me.id !== data.note.author.id) {
-          return <p>You do not have access to edit this note</p>;
-        }
-        return (
-          <Mutation
-            mutation={EDIT_NOTE}
-            // pass our variables to the mutation
-            variables={{ id, content: data.note.content }}
-            // if the mutation is successful, redirect to the note's page
-            onCompleted={data => {
-              if (data) {
-                props.history.push(`/note/${id}`);
-              }
-            }}
-          >
-            {(updateNote, { loading, error }) => {
-              if (loading) return 'Loading...';
-              if (error) return `Error! ${error.message}`;
-              // pass the data and mutation to the form component
-              return (
-                <NoteForm content={data.note.content} action={updateNote} />
-              );
-            }}
-          </Mutation>
-        );
-      }}
-    </Query>
-  );
+  // define our note query
+  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+  // define our mutation
+  const [editNote] = useMutation(EDIT_NOTE, {
+    variables: {
+      id
+    },
+    onCompleted: data => {
+      if (data) {
+        props.history.push(`/note/${id}`);
+      }
+    }
+  });
+
+  // if the data is loading, display a loading message
+  if (loading) return 'Loading...';
+  // if there is an error fetching the data, display an error message
+  if (error) return <p>Error!</p>;
+  // if the current user and the author of the note do not match
+  if (data.me.id !== data.note.author.id) {
+    return <p>You do not have access to edit this note</p>;
+  }
+
+  // pass the data and mutation to the form component
+  return <NoteForm content={data.note.content} action={editNote} />;
 };
 
 export default EditNote;

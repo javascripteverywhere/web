@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
 
+// import global styles
 import GlobalStyle from '/components/GlobalStyle';
+// import our routes
+import Pages from '/pages';
 
 const uri = process.env.API_URI;
+const cache = new InMemoryCache();
+
 // configure Apollo Client
 const client = new ApolloClient({
+  cache,
   uri,
   clientState: {
-    // the default state includes a local isLoggedIn boolean
-    defaults: {
-      isLoggedIn: !!localStorage.getItem('token')
-    },
     resolvers: {},
     connectToDevTools: true
   },
@@ -26,8 +28,16 @@ const client = new ApolloClient({
   }
 });
 
-// import our routes
-import Pages from '/pages';
+const initialCache = new Object({
+  data: {
+    isLoggedIn: !!localStorage.getItem('token')
+  }
+});
+
+// write the cache data on initial load
+cache.writeData(initialCache);
+// write the cache data after the stored cache is reset
+client.onResetStore(() => cache.writeData(initialCache));
 
 const App = () => {
   return (

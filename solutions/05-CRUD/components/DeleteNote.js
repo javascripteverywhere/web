@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { withRouter } from 'react-router-dom';
 
@@ -13,20 +13,18 @@ const DELETE_NOTE = gql`
 `;
 
 const DeleteNote = props => {
-  return (
-    <Mutation
-      mutation={DELETE_NOTE}
-      variables={{ id: props.noteId }}
-      // if the mutation is successful, redirect to the mynote page
-      onCompleted={({ deleteNote }) => {
+  const [deleteNote] = useMutation(DELETE_NOTE, {
+    variables: {
+      id: props.noteId
+    },
+    onCompleted: data => {
+      if (data) {
         props.history.push('/mynotes');
-      }}
-    >
-      {deleteNote => {
-        return <ButtonAsLink onClick={deleteNote}>Delete Note</ButtonAsLink>;
-      }}
-    </Mutation>
-  );
+      }
+    }
+  });
+
+  return <ButtonAsLink onClick={deleteNote}>Delete Note</ButtonAsLink>;
 };
 
 export default withRouter(DeleteNote);

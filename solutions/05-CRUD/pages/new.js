@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import NoteForm from '../components/NoteForm';
@@ -30,22 +30,24 @@ const NewNote = props => {
     document.title = 'New Note — Notedly';
   });
 
+  const [data, { loading, error }] = useMutation(NEW_NOTE, {
+    onCompleted: data => {
+      // if the mutation is successful, redirect the user to the note page
+      if (data) {
+        props.history.push(`note/${data.newNote.id}`);
+      }
+    }
+  });
+
   return (
-    <Mutation
-      mutation={NEW_NOTE}
-      // if the mutation is successful, redirect to the note's page
-      onCompleted={data => {
-        if (data) {
-          props.history.push(`note/${data.newNote.id}`);
-        }
-      }}
-    >
-      {(newNote, { loading, error }) => {
-        if (loading) return 'Loading...';
-        if (error) return `Error! ${error.message}`;
-        return <NoteForm action={newNote} />;
-      }}
-    </Mutation>
+    <React.Fragment>
+      {/* as the mutation is loading, display a loading message*/}
+      {loading && <p>Loading...</p>}
+      {/* if there is an error, display a error message*/}
+      {error && <p>Error saving the note</p>}
+      {/* the form component, passing the mutation data as a prop */}
+      <NoteForm action={data} />
+    </React.Fragment>
   );
 };
 

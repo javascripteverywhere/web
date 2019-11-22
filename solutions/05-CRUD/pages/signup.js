@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Mutation, ApolloConsumer } from 'react-apollo';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import UserForm from '../components/UserForm';
@@ -16,34 +16,26 @@ const SignUp = props => {
     document.title = 'Sign Up — Notedly';
   });
 
+  const client = useApolloClient();
+  const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
+    onCompleted: data => {
+      // store the token
+      localStorage.setItem('token', data.signUp);
+      // update the local cache
+      client.writeData({ data: { isLoggedIn: true } });
+      // redirect the user to the homepage
+      props.history.push('/');
+    }
+  });
+
   return (
-    // Wrap our mutation in ApolloConsumer to give direct access to `client`
-    <ApolloConsumer>
-      {client => (
-        // render our GraphQL Mutation
-        <Mutation
-          mutation={SIGNUP_USER}
-          onCompleted={({ signUp }) => {
-            localStorage.setItem('token', signUp);
-            client
-              .resetStore()
-              // store logged in state
-              .then(() => client.writeData({ data: { isLoggedIn: true } }))
-              // redirect the user
-              .then(() => props.history.push('/'));
-          }}
-        >
-          {(signUp, { loading, error }) => {
-            // if loading, return a loading indicator
-            if (loading) return 'Loading...';
-            // if there is an error, display a message to the user
-            if (error) return `Error creating account ${error.message}`;
-            // our form component
-            return <UserForm action={signUp} formType="signup" />;
-          }}
-        </Mutation>
-      )}
-    </ApolloConsumer>
+    <React.Fragment>
+      <UserForm action={signUp} formType="signup" />
+      {/* if the data is loading, display a loading message*/}
+      {loading && <p>Loading...</p>}
+      {/* if there is an error, display a error message*/}
+      {error && <p>Error creating an account!</p>}
+    </React.Fragment>
   );
 };
 
