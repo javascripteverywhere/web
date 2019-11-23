@@ -13,14 +13,12 @@ const DELETE_NOTE = gql`
 `;
 
 const DeleteNote = props => {
-  const [deleteNote] = useMutation(DELETE_NOTE, {
+  const [deleteNote, { client }] = useMutation(DELETE_NOTE, {
     variables: {
       id: props.noteId
     },
-    onCompleted: data => {
-      if (data) {
-        props.history.push('/mynotes');
-      }
+    onCompleted: () => {
+      props.history.push('/mynotes');
     }
   });
 

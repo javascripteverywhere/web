@@ -55,9 +55,7 @@ const EditNote = props => {
       id
     },
     onCompleted: data => {
-      if (data) {
-        props.history.push(`/note/${id}`);
-      }
+      props.history.push(`/note/${id}`);
     }
   });
 

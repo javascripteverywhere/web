@@ -32,10 +32,8 @@ const NewNote = props => {
 
   const [data, { loading, error }] = useMutation(NEW_NOTE, {
     onCompleted: data => {
-      // if the mutation is successful, redirect the user to the note page
-      if (data) {
-        props.history.push(`note/${data.newNote.id}`);
-      }
+      // when complete, redirect the user to the note page
+      props.history.push(`note/${data.newNote.id}`);
     }
   });
 

@@ -1,6 +1,6 @@
 // import React and our routing dependencies
 import React from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
@@ -41,26 +41,29 @@ const Pages = props => {
   );
 };
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Query query={IS_LOGGED_IN}>
-    {({ data }) => (
-      <Route
-        {...rest}
-        render={props =>
-          data.isLoggedIn === true ? (
-            <Component {...props} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: '/signin',
-                state: { from: props.location }
-              }}
-            />
-          )
-        }
-      />
-    )}
-  </Query>
-);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { loading, error, data } = useQuery(IS_LOGGED_IN);
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>;
+  // if there is an error fetching the data, display an error message
+  if (error) return <p>Error!</p>;
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        data.isLoggedIn === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/signin',
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default Pages;

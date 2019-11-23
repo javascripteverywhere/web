@@ -17,10 +17,8 @@ const DeleteNote = props => {
     variables: {
       id: props.noteId
     },
-    onCompleted: data => {
-      if (data) {
-        props.history.push('/mynotes');
-      }
+    onCompleted: () => {
+      props.history.push('/mynotes');
     }
   });
 

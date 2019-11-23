@@ -52,6 +52,8 @@ const Header = props => {
               localStorage.removeItem('token');
               // clear the application's cache
               client.resetStore();
+              // update local state
+              client.writeData({ data: { isLoggedIn: false } });
               // redirect the user to the homepage
               props.history.push('/');
             }}

@@ -12,7 +12,7 @@ import Favorites from './favorites';
 import Note from './note';
 
 // define our routes
-const Pages = props => {
+const Pages = () => {
   return (
     <Router>
       <Layout>

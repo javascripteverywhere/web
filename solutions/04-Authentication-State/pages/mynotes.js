@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const MyNotes = props => {
+const MyNotes = () => {
   useEffect(() => {
     // update the document title
     document.title = 'My Notes — Notedly';

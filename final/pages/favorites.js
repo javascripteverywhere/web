@@ -24,7 +24,7 @@ const GET_MY_FAVORITES = gql`
   }
 `;
 
-const Favorites = props => {
+const Favorites = () => {
   useEffect(() => {
     // update the document title
     document.title = 'Favorites — Notedly';

@@ -24,7 +24,7 @@ const GET_MY_NOTES = gql`
   }
 `;
 
-const MyNotes = props => {
+const MyNotes = () => {
   useEffect(() => {
     // update the document title
     document.title = 'My Notes — Notedly';
