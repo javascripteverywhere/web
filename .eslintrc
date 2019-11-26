@@ -13,11 +13,12 @@
       "jsx": true
     }
   },
-  "plugins": ["react", "prettier", "jsx-a11y"],
+  "plugins": ["react", "prettier", "jsx-a11y", "eslint-plugin-cypress"],
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "rules": {
     "no-console": "off", // We use console.log for demonstrative purposes
