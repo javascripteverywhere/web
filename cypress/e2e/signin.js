@@ -12,7 +12,7 @@ describe('user sign in flow', () => {
         .queryByText('Submit')
         .click()
         .url()
-        .should('eq', 'http://localhost:1234/')
+        .should('eq', `${Cypress.config().baseUrl}/`)
         .window()
         .its('localStorage.token')
         .should('exist')

@@ -15,7 +15,7 @@ describe('user registration', () => {
       .queryByText('Submit')
       .click()
       .url()
-      .should('eq', 'http://localhost:1234/')
+      .should('eq', `${Cypress.config().baseUrl}/`)
       .window()
       .its('localStorage.token')
       .should('be.a', 'string');
