@@ -4,7 +4,7 @@ describe('pagination', () => {
     cy.get('main button')
       .click() // click the "Load more" button
       .wait(500)
-      .get('.note-feed > div') // select all of the articles
+      .get('.note-feed article') // select all of the articles
       .its('length')
       .should('be.greaterThan', 11); // there should be more than 10 notes on the page
   });
