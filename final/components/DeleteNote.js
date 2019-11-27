@@ -1,25 +1,22 @@
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { withRouter } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';
-
-// our delete note mutation
-const DELETE_NOTE = gql`
-  mutation deleteNote($id: ID!) {
-    deleteNote(id: $id)
-  }
-`;
+import { DELETE_NOTE } from '../gql/mutation';
+import { GET_MY_NOTES, GET_NOTES, GET_MY_FAVORITES } from '../gql/query';
 
 const DeleteNote = props => {
-  const [deleteNote, { client }] = useMutation(DELETE_NOTE, {
+  const [deleteNote] = useMutation(DELETE_NOTE, {
     variables: {
       id: props.noteId
     },
-    onCompleted: () => {
-      props.history.push('/mynotes');
-    }
+    // refetch all of the note list queries to update the cache
+    refetchQueries: [
+      { query: GET_MY_NOTES },
+      { query: GET_NOTES },
+      { query: GET_MY_FAVORITES }
+    ]
   });
 
   return <ButtonAsLink onClick={deleteNote}>Delete Note</ButtonAsLink>;

@@ -1,48 +1,10 @@
 import React from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 // import the NoteForm component
 import NoteForm from '../components/NoteForm';
-
-// our note query, which accepts an ID variable
-const GET_NOTE = gql`
-  query note($id: ID!) {
-    note(id: $id) {
-      id
-      createdAt
-      content
-      favoriteCount
-      author {
-        username
-        id
-        avatar
-      }
-    }
-    me {
-      id
-    }
-  }
-`;
-
-const EDIT_NOTE = gql`
-  mutation updateNote($id: ID!, $content: String!) {
-    updateNote(id: $id, content: $content) {
-      id
-      content
-      createdAt
-      favoriteCount
-      favoritedBy {
-        id
-        username
-      }
-      author {
-        username
-        id
-      }
-    }
-  }
-`;
+import { GET_NOTE } from '../gql/query';
+import { EDIT_NOTE } from '../gql/mutation';
 
 const EditNote = props => {
   // store the id found in the url as a variable
