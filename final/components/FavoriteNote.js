@@ -34,6 +34,7 @@ const FavoriteNote = props => {
             setFavorited(false);
             setCount(count - 1);
           }}
+          data-cy="favorite"
         >
           Remove Favorite
         </ButtonAsLink>
@@ -44,6 +45,7 @@ const FavoriteNote = props => {
             setFavorited(true);
             setCount(count + 1);
           }}
+          data-cy="favorite"
         >
           Add Favorite
         </ButtonAsLink>
