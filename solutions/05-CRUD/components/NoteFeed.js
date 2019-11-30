@@ -14,7 +14,7 @@ import Note from './Note';
 
 const NoteFeed = ({ notes }) => {
   return (
-    <div>
+    <div className="note-feed">
       {notes.map(note => (
         <NoteWrapper key={note.id}>
           <Note note={note} />

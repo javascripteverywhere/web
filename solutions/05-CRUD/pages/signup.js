@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import UserForm from '../components/UserForm';
-
-const SIGNUP_USER = gql`
-  mutation signUp($email: String!, $username: String!, $password: String!) {
-    signUp(email: $email, username: $username, password: $password)
-  }
-`;
+import { SIGNUP_USER } from '../gql/mutation';
 
 const SignUp = props => {
   useEffect(() => {

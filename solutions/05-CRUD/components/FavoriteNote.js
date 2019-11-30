@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import ButtonAsLink from './ButtonAsLink';
-
-const TOGGLE_FAVORITE = gql`
-  mutation toggleFavorite($id: ID!) {
-    toggleFavorite(id: $id) {
-      id
-      favoriteCount
-    }
-  }
-`;
+import { TOGGLE_FAVORITE } from '../gql/mutation';
+import { GET_MY_FAVORITES } from '../gql/query';
 
 const FavoriteNote = props => {
   // store the note's favorite count as state
@@ -26,7 +18,9 @@ const FavoriteNote = props => {
   const [toggleFavorite] = useMutation(TOGGLE_FAVORITE, {
     variables: {
       id: props.noteId
-    }
+    },
+    // refetch the GET_MY_FAVORITES query to update the cache
+    refetchQueries: [{ query: GET_MY_FAVORITES }]
   });
 
   // if the user has favorited the note display the option to remove the favorite
@@ -40,6 +34,7 @@ const FavoriteNote = props => {
             setFavorited(false);
             setCount(count - 1);
           }}
+          data-cy="favorite"
         >
           Remove Favorite
         </ButtonAsLink>
@@ -50,6 +45,7 @@ const FavoriteNote = props => {
             setFavorited(true);
             setCount(count + 1);
           }}
+          data-cy="favorite"
         >
           Add Favorite
         </ButtonAsLink>

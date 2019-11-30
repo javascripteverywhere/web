@@ -1,28 +1,9 @@
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import NoteForm from '../components/NoteForm';
-
-// our new note query
-const NEW_NOTE = gql`
-  mutation newNote($content: String!) {
-    newNote(content: $content) {
-      id
-      content
-      createdAt
-      favoriteCount
-      favoritedBy {
-        id
-        username
-      }
-      author {
-        username
-        id
-      }
-    }
-  }
-`;
+import { NEW_NOTE } from '../gql/mutation';
+import { GET_MY_NOTES, GET_NOTES } from '../gql/query';
 
 const NewNote = props => {
   useEffect(() => {
@@ -31,6 +12,8 @@ const NewNote = props => {
   });
 
   const [data, { loading, error }] = useMutation(NEW_NOTE, {
+    // refetch the GET_NOTES and GET_MY_NOTES queries to update the cache
+    refetchQueries: [{ query: GET_MY_NOTES }, { query: GET_NOTES }],
     onCompleted: data => {
       // when complete, redirect the user to the note page
       props.history.push(`note/${data.newNote.id}`);

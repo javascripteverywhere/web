@@ -5,17 +5,7 @@ import { Link } from 'react-router-dom';
 
 import DeleteNote from './DeleteNote';
 import FavoriteNote from './FavoriteNote';
-
-const GET_ME = gql`
-  query me {
-    me {
-      id
-      favorites {
-        id
-      }
-    }
-  }
-`;
+import { GET_ME } from '../gql/query';
 
 const NoteUser = props => {
   const { loading, error, data } = useQuery(GET_ME);

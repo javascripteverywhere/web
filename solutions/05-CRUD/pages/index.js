@@ -24,7 +24,7 @@ const IS_LOGGED_IN = gql`
 `;
 
 // define our routes
-const Pages = props => {
+const Pages = () => {
   return (
     <Router>
       <Layout>

@@ -1,28 +1,8 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import NoteFeed from '../components/NoteFeed';
-
-const GET_MY_FAVORITES = gql`
-  query me {
-    me {
-      id
-      username
-      favorites {
-        id
-        createdAt
-        content
-        favoriteCount
-        author {
-          username
-          id
-          avatar
-        }
-      }
-    }
-  }
-`;
+import { GET_MY_FAVORITES } from '../gql/query';
 
 const Favorites = () => {
   useEffect(() => {
@@ -30,9 +10,7 @@ const Favorites = () => {
     document.title = 'Favorites — Notedly';
   });
 
-  const { loading, error, data } = useQuery(GET_MY_FAVORITES, {
-    fetchPolicy: 'network-only'
-  });
+  const { loading, error, data } = useQuery(GET_MY_FAVORITES);
 
   // if the data is loading, our app will display a loading message
   if (loading) return 'Loading...';

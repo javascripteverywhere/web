@@ -5,15 +5,8 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-// import our logged in user UI components
 import NoteUser from './NoteUser';
-
-// logged in state query
-const IS_LOGGED_IN = gql`
-  {
-    isLoggedIn @client
-  }
-`;
+import { IS_LOGGED_IN } from '../gql/query';
 
 // Keep notes from extending wider than 800px
 const StyledNote = styled.article`

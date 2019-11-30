@@ -1,38 +1,16 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import NoteFeed from '../components/NoteFeed';
+import { GET_MY_NOTES } from '../gql/query';
 
-const GET_MY_NOTES = gql`
-  query me {
-    me {
-      id
-      username
-      notes {
-        id
-        createdAt
-        content
-        favoriteCount
-        author {
-          username
-          id
-          avatar
-        }
-      }
-    }
-  }
-`;
-
-const MyNotes = props => {
+const MyNotes = () => {
   useEffect(() => {
     // update the document title
     document.title = 'My Notes — Notedly';
   });
 
-  const { loading, error, data } = useQuery(GET_MY_NOTES, {
-    fetchPolicy: 'network-only'
-  });
+  const { loading, error, data } = useQuery(GET_MY_NOTES);
 
   // if the data is loading, our app will display a loading message
   if (loading) return 'Loading...';
