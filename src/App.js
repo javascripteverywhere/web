@@ -1,8 +1,2 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-const App = () => {
-  return <p>Hello world!</p>;
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+// index.js
+// This is the main entry point of our application
