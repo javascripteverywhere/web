@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import NoteFeed from '../components/NoteFeed';
 import { GET_MY_FAVORITES } from '../gql/query';

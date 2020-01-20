@@ -2,8 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/client';
 
 import NoteUser from './NoteUser';
 import { IS_LOGGED_IN } from '../gql/query';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import NoteFeed from '../components/NoteFeed';
 import Button from '../components/Button';
@@ -8,7 +8,6 @@ import { GET_NOTES } from '../gql/query';
 const Home = () => {
   // query hook
   const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
-
   // if the data is loading, display a loading message
   if (loading) return <p>Loading...</p>;
   // if there is an error fetching the data, display an error message

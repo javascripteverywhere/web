@@ -1,6 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
 import DeleteNote from './DeleteNote';

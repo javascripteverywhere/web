@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Link, withRouter } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';

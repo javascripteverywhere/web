@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/client';
 
 import UserForm from '../components/UserForm';
 import { SIGNIN_USER } from '../gql/mutation';
