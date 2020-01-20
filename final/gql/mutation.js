@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
 const NEW_NOTE = gql`
   mutation newNote($content: String!) {

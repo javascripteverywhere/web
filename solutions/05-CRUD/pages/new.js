@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import NoteForm from '../components/NoteForm';
 import { NEW_NOTE } from '../gql/mutation';

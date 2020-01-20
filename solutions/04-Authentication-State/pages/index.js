@@ -1,7 +1,6 @@
 // import React and our routing dependencies
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { useQuery, gql } from '@apollo/client';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 // import our shared layout component

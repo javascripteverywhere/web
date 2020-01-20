@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
 const GET_NOTES = gql`
   query noteFeed($cursor: String) {
@@ -32,9 +32,6 @@ const GET_NOTE = gql`
         id
         avatar
       }
-    }
-    me {
-      id
     }
   }
 `;
