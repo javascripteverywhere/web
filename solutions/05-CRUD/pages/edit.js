@@ -11,6 +11,7 @@ const EditNote = props => {
   const id = props.match.params.id;
   // define our note query
   const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+  // fetch the current user's data
   const { data: userdata } = useQuery(GET_ME);
   // define our mutation
   const [editNote] = useMutation(EDIT_NOTE, {
