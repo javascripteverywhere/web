@@ -2,7 +2,6 @@
   "name": "notedly-web",
   "version": "1.0.0",
   "description": "[WIP] Web code examples for JavaScript Everywhere by Adam Scott, published by O'Reilly Media",
-  "main": "src/index.js",
   "scripts": {
     "dev": "parcel src/index.html",
     "final": "parcel final/index.html",
@@ -37,11 +36,10 @@
   },
   "devDependencies": {
     "@babel/core": "7.15.5",
-    "@babel/preset-env": "7.15.6",
-    "@babel/preset-react": "7.14.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
+    "@parcel/babel-preset": "^2.0.0-alpha.2",
     "@testing-library/cypress": "5.0.2",
     "babel-plugin-styled-components": "1.10.6",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "cypress": "3.6.1",
     "eslint": "5.16.0",
     "eslint-config-prettier": "5.1.0",
